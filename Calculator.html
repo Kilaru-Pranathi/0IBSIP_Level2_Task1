@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scientific Calculator</title>
+  <style>
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background-image: url('https://img.freepik.com/premium-vector/calculator-pencils-background_188544-6127.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .calculator {
+      width: 90%;
+      max-width: 400px;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: rgba(128, 128, 128, 0.7);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .output {
+      margin-bottom: 20px;
+      padding: 20px;
+      border-radius: 5px;
+      background-color: #f0f0f0;
+      color: #333;
+      text-align: right;
+      font-size: 28px;
+      height: 60px;
+      line-height: 60px;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 10px;
+    }
+    button {
+      padding: 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #e0e0e0;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #d0d0d0;
+    }
+    button.operator {
+      background-color: #ffa500;
+      color: #fff;
+    }
+    button.operator:hover {
+      background-color: #ff8c00;
+    }
+    button.equals {
+      background-color: #4caf50;
+      color: #fff;
+      grid-column: span 2;
+    }
+    button.equals:hover {
+      background-color: #43a047;
+    }
+    @media (max-width: 600px) {
+      .calculator {
+        width: 100%;
+        padding: 10px;
+      }
+      .buttons {
+        grid-gap: 5px;
+      }
+      button {
+        padding: 15px;
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div class="output" id="output"></div>
+    <div class="buttons">
+      <button onclick="appendToOutput('7')">7</button>
+      <button onclick="appendToOutput('8')">8</button>
+      <button onclick="appendToOutput('9')">9</button>
+      <button onclick="appendToOutput('/')" class="operator">/</button>
+      <button onclick="appendToOutput('4')">4</button>
+      <button onclick="appendToOutput('5')">5</button>
+      <button onclick="appendToOutput('6')">6</button>
+      <button onclick="appendToOutput('')" class="operator"></button>
+      <button onclick="appendToOutput('1')">1</button>
+      <button onclick="appendToOutput('2')">2</button>
+      <button onclick="appendToOutput('3')">3</button>
+      <button onclick="appendToOutput('-')" class="operator">-</button>
+      <button onclick="appendToOutput('0')">0</button>
+      <button onclick="appendToOutput('.')">.</button>
+      <button onclick="clearOutput()">C</button>
+      <button onclick="appendToOutput('+')" class="operator">+</button>
+      <button onclick="calculate()" class="equals">=</button>
+    </div>
+  </div>
+
+  <script>
+    function appendToOutput(value) {
+      document.getElementById('output').innerHTML += value;
+    }
+
+    function clearOutput() {
+      document.getElementById('output').innerHTML = '';
+    }
+
+    function calculate() {
+      try {
+        const result = eval(document.getElementById('output').innerHTML);
+        document.getElementById('output').innerHTML = result;
+      } catch(error) {
+        document.getElementById('output').innerHTML = 'Error';
+      }
+    }
+  </script>
+</body>
+</html>
